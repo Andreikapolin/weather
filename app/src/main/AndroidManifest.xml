@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ru.ifmo.weatherproject" >
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <provider
+            android:name="ru.ifmo.weatherproject.provider.WeatherProvider"
+            android:authorities="ru.ifmo.weatherproject.weather"
+            android:enabled="true"
+            android:exported="false" >
+        </provider>
+
+        <service
+            android:name="ru.ifmo.weatherproject.WeatherLoaderService"
+            android:exported="false" >
+        </service>
+
+        <activity
+            android:name="ru.ifmo.weatherproject.CityListActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="ru.ifmo.weatherproject.CityDetailActivity"
+            android:label="@string/title_city_detail"
+            android:parentActivityName="ru.ifmo.weatherproject.CityListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ru.ifmo.weatherproject.CityListActivity" />
+        </activity>
+    </application>
+
+</manifest>
